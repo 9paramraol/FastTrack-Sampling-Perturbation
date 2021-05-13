@@ -1,0 +1,82 @@
+#############################          Task 1:               ########################################
+
+The flags and their explainination for them in the constant sampling code is as follows:
+
+######## CASE 1: CONSTANT SAMPLING
+
+Tool : FT2S
+
+1. samplingscheme  
+For constant sampling "count" and for adaptive "adaptive". In this case "count"
+
+2. samplingtype
+-- 0: for the random number generator startegy mentioned in report 
+-- 1: for global level sampling using array
+-- 2: for thread local level sampling
+
+3. samplingrate
+Takes the sampling rate for the sampling part. Make sure it is integral and between 0-100 for samplingtype = 1 and 2.
+
+eg: for thread local level sampling and sampling rate 20% the command will be
+
+	./TEST -tool=FT2S -samplingtype=count -samplingrate=20 -samplingtype=2 -array=FINE -field=FINE -noTidGC -availableProcessors=4 -benchmark=1 -warmup=0 RRBench
+
+######### CASE 2: ADAPTIVE SAMPLING
+
+1. samplingscheme  
+For constant sampling "count" and for adaptive "adaptive". In this case "adaptive"
+
+2. burstlen
+number of accesses after which sampling rate for the memory location will be changed
+
+3. minsampling
+The minimum sampling rate that must be there for any location keep its value = burstlen*(min sampling rate)
+
+4. decRate
+Number of accesess that will be randomly dropped in next burlen accesses. Keep it = (decrement in sampling rate)*burslen for linear case
+
+5. burstLvl
+"global" for sampling accesses at global level and "thread" for sampling accesses at local level
+
+6. samplingtype 
+-- 0 for linear reduction of sampling rate
+-- 1 for exponential reduction sampling rate
+
+So for eg 200 burstlegth ,min 20% sampling rate ,10% decrement rate, global level, linear reduction sampling the command will be 
+	
+	./TEST -tool=FT2S -samplingtype=adaptive -minsampling=40 -samplingtype=0 -decRate=20 -burstLvl=global -array=FINE -field=FINE -noTidGC -availableProcessors=4 -benchmark=1 -warmup=0 RRBench
+
+
+***** NOTE: for getting the race simply change tool for FT2->EFT2 and FT2S->ET2S all other flags remain same
+
+For the race pair files to get the race pairs the commnd has to be 
+
+./TEST -tool=EFT2S someflags | grep "#---#" > racepair_file
+
+#############################          Task 2:               ########################################
+
+The flags are:
+
+1. racepair: give path relative to benchmark folder. for eg file is present in avrora and you are executing luindex then the flag will be racepair=../filename
+
+2. maxsleeps: maimum number of sleeps a location can incurr.
+
+3. maxTimeOut: maximum time for one exponentially backoff sleep
+
+4. maxContSleeps: maximum number of continious accesses that will go to sleep starting from the first access
+
+The race pairs for this part must be in line by line format meaning:
+
+A-B
+C-D
+E-F 
+
+race pairs should be give in the file as
+A
+B
+C
+D
+E
+F
+
+Note: in order to change to remove the dected races remove the commented region of "error" function code in src/tools/ft2SS/FastTrackSSTool.java

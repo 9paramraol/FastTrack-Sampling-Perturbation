@@ -1,0 +1,8 @@
+#---#org/sunflow/core/accel/NullAccelerator.__$rr_intersect__$rr__Original_(Lorg/sunflow/core/Ray;Lorg/sunflow/core/IntersectionState;)V (NullAccelerator.java):23:4
+#---#org/sunflow/core/accel/NullAccelerator.<init>()V (NullAccelerator.java):14:11
+#---#org/sunflow/core/accel/NullAccelerator.__$rr_intersect__$rr__Original_(Lorg/sunflow/core/Ray;Lorg/sunflow/core/IntersectionState;)V (NullAccelerator.java):23:4
+#---#org/sunflow/core/accel/NullAccelerator.<init>()V (NullAccelerator.java):14:11
+#---#org/sunflow/core/Geometry.__$rr_tesselate__$rr__Original_()V (Geometry.java):108:98
+#---#org/sunflow/core/Geometry.__$rr_intersect__$rr__Original_(Lorg/sunflow/core/Ray;Lorg/sunflow/core/IntersectionState;)V (Geometry.java):89:1
+#---#org/sunflow/core/Geometry.__$rr_intersect__$rr__Original_(Lorg/sunflow/core/Ray;Lorg/sunflow/core/IntersectionState;)V (Geometry.java):91:12
+#---#org/sunflow/core/Geometry.__$rr_build__$rr__Original_()V (Geometry.java):126:93
